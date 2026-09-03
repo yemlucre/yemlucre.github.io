@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>茶语 · 一叶知味 — 茶叶品鉴与冲泡指南</title>
+  <meta name="description" content="茶语 — 探索茶的种类、评分、价格、冲泡手法与真实评价，一叶知味。" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        <span class="logo-mark">茶</span>
+        <span class="logo-text">茶语<em>·一叶知味</em></span>
+      </a>
+      <nav class="nav">
+        <a href="#home" class="nav-link active">首页</a>
+        <a href="#teas" class="nav-link">茶叶</a>
+        <a href="#brewing" class="nav-link">冲泡</a>
+        <a href="#about" class="nav-link">关于</a>
+      </nav>
+      <div class="header-search">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-3.5-3.5"></path>
+        </svg>
+        <input id="headerSearchInput" type="text" placeholder="搜索茶叶名称或产地…" />
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <span class="hero-eyebrow">THE ART OF TEA</span>
+        <h1>一叶知味，<br />从一杯茶开始。</h1>
+        <p>汇集茶的种类、评分、价格与冲泡手法，<br />让每一次冲泡都恰到好处。</p>
+        <div class="hero-actions">
+          <a href="#teas" class="btn btn-primary">浏览茶叶</a>
+          <a href="#brewing" class="btn btn-ghost">冲泡指南</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><strong id="statTeas">0</strong><span>精选茶品</span></div>
+          <div class="stat"><strong id="statTypes">0</strong><span>品种品牌</span></div>
+          <div class="stat"><strong id="statReviews">0</strong><span>真实评价</span></div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="leaf leaf-1"></div>
+        <div class="leaf leaf-2"></div>
+        <div class="leaf leaf-3"></div>
+        <div class="cup">
+          <div class="cup-steam s1"></div>
+          <div class="cup-steam s2"></div>
+          <div class="cup-steam s3"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 茶叶列表 -->
+  <section id="teas" class="section teas-section">
+    <div class="container">
+      <div class="section-head">
+        <h2>精选茶叶</h2>
+        <p>按茶类筛选，找到属于你的那一杯。</p>
+      </div>
+
+      <div class="toolbar">
+        <div class="filter-chips" id="filterChips"></div>
+        <div class="toolbar-right">
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="m20 20-3.5-3.5"></path>
+            </svg>
+            <input id="searchInput" type="text" placeholder="搜索…" />
+          </div>
+        </div>
+      </div>
+
+      <div class="tea-grid" id="teaGrid"></div>
+      <p class="empty-state" id="emptyState" hidden>没有找到匹配的茶叶，试试其他关键词或筛选条件。</p>
+    </div>
+  </section>
+
+  <!-- 通用冲泡指南 -->
+  <section id="brewing" class="section brewing-section">
+    <div class="container">
+      <div class="section-head">
+        <h2>通用冲泡指南</h2>
+        <p>六大茶类的基础冲泡参考，掌握水温与节奏，方能释放茶之本味。</p>
+      </div>
+      <div class="brewing-grid" id="brewingGrid"></div>
+    </div>
+  </section>
+
+  <!-- 关于 -->
+  <section id="about" class="section about-section">
+    <div class="container about-inner">
+      <div class="about-text">
+        <span class="hero-eyebrow">ABOUT</span>
+        <h2>关于茶语</h2>
+        <p>这是一个关于茶的轻量小站，专注于记录与分享茶的种类、评分、价格、冲泡手法与品饮评价。</p>
+        <p>愿每一片茶叶，都能被认真对待。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>茶语 · 一叶知味</span>
+      <span>问题反馈及心得交流联系：yemlucre233@gmail.com</span>
+    </div>
+  </footer>
+
+  <!-- 茶叶详情弹窗 -->
+  <div class="modal-overlay" id="modalOverlay" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="关闭">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6 6 18M6 6l12 12"></path>
+        </svg>
+      </button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- 提示 -->
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="js/teas-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
