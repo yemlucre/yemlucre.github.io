@@ -217,11 +217,6 @@ function bindEvents() {
     state.search = e.target.value.trim();
     renderGrid();
   });
-  document.getElementById('headerSearchInput').addEventListener('input', e => {
-    state.search = e.target.value.trim();
-    document.getElementById('searchInput').value = state.search;
-    renderGrid();
-  });
 
   // 卡片点击（含键盘）
   document.getElementById('teaGrid').addEventListener('click', e => {
