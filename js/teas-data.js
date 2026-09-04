@@ -56,20 +56,6 @@ const BREW = {
   }
 };
 
-const IMGS = [
-  'https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=600&q=80',
-  'https://images.unsplash.com/photo-1597318181409-cf64d0b5d8a2?w=600&q=80',
-  'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&q=80',
-  'https://images.unsplash.com/photo-1556881286-fc6915169721?w=600&q=80',
-  'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600&q=80',
-  'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600&q=80',
-  'https://images.unsplash.com/photo-1587080413959-06b859fb107d?w=600&q=80',
-  'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&q=80',
-  'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?w=600&q=80',
-  'https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?w=600&q=80',
-  'https://images.unsplash.com/photo-1547825407-2d060104b7f8?w=600&q=80'
-];
-
 const TEAS = [
   // ============ 绿茶 ============
   { id: 'longjing43', name: '龙井43号', type: '绿茶', origin: '浙江 · 杭州西湖', flavor: ['豆香', '清香', '鲜爽'], image: 'Picture/longjing43.png', description: '龙井茶的国家级良种，发芽早、香气清高，是西湖龙井的主力品种。', brewing: BREW['绿茶'], varieties: [{ name: '狮牌' }, { name: '贡牌' }] },
@@ -91,27 +77,26 @@ const TEAS = [
   { id: 'dianhong', name: '滇红', type: '红茶', origin: '云南 · 凤庆', flavor: ['蜜香', '甜醇', '浓厚'], image: 'Picture/dianhong.png', description: '云南大叶种红茶，蜜香浓郁，滋味浓厚甜醇。', brewing: BREW['红茶'], varieties: [{ name: '凤牌' }] },
   { id: 'yinghong', name: '英红', type: '红茶', origin: '广东 · 英德', flavor: ['花果香', '甜爽', '浓强'], image: 'Picture/yinghong.png', description: '广东英德红茶，花果香明显，浓强甜爽。', brewing: BREW['红茶'], varieties: [{ name: '英红九号' }] },
   { id: 'jinjunmei', name: '金骏眉', type: '红茶', origin: '福建 · 武夷山', flavor: ['蜜香', '果香', '甜醇'], image: 'Picture/jinjunmei.png', description: '全芽头红茶，蜜香果香，汤色金黄甜醇。', brewing: BREW['红茶'], varieties: [] },
-  { id: 'chuanhong', name: '川红', type: '红茶', origin: '四川 · 宜宾', flavor: ['橘糖香', '甜醇', '浓厚'], image: IMGS[6], description: '四川红茶，带橘糖香，滋味浓厚。', brewing: BREW['红茶'], varieties: [{ name: '川红集团' }] },
-  { id: 'jiuquhongmei', name: '九曲红梅', type: '红茶', origin: '浙江 · 杭州', flavor: ['梅香', '甜醇', '柔和'], image: IMGS[7], description: '杭州红茶，形似红梅，梅香清雅，甜醇柔和。', brewing: BREW['红茶'], varieties: [{ name: '狮峰' }] },
-  { id: 'qihong', name: '祁红', type: '红茶', origin: '安徽 · 祁门', flavor: ['祁门香', '蜜糖香', '醇厚'], image: IMGS[8], description: '世界三大高香红茶之一，"祁门香"馥郁，滋味醇厚。', brewing: BREW['红茶'], varieties: [{ name: '天之红' }] },
+  { id: 'chuanhong', name: '川红', type: '红茶', origin: '四川 · 宜宾', flavor: ['橘糖香', '甜醇', '浓厚'], image: 'Picture/chuanhong.png', description: '四川红茶，带橘糖香，滋味浓厚。', brewing: BREW['红茶'], varieties: [{ name: '川红集团' }] },
+  { id: 'jiuquhongmei', name: '九曲红梅', type: '红茶', origin: '浙江 · 杭州', flavor: ['梅香', '甜醇', '柔和'], image: 'Picture/jiuquhongmei.png', description: '杭州红茶，形似红梅，梅香清雅，甜醇柔和。', brewing: BREW['红茶'], varieties: [{ name: '狮峰' }] },
+  { id: 'qihong', name: '祁红', type: '红茶', origin: '安徽 · 祁门', flavor: ['祁门香', '蜜糖香', '醇厚'], image: 'Picture/qihong.png', description: '世界三大高香红茶之一，"祁门香"馥郁，滋味醇厚。', brewing: BREW['红茶'], varieties: [{ name: '天之红' }] },
 
   // ============ 白茶 ============
-  { id: 'baihaoyinzhen', name: '白毫银针', type: '白茶', origin: '福建 · 福鼎', flavor: ['毫香', '清甜', '鲜爽'], image: IMGS[9], description: '全芽头白茶，满披白毫，毫香清甜。', brewing: BREW['白茶'], varieties: [{ name: '品品香' }, { name: '绿雪芽' }] },
-  { id: 'baimudan', name: '白牡丹', type: '白茶', origin: '福建 · 福鼎', flavor: ['花香', '清甜', '醇和'], image: IMGS[10], description: '一芽二叶，形似牡丹，花香清甜。', brewing: BREW['白茶'], varieties: [{ name: '品品香' }, { name: '绿雪芽' }] },
-  { id: 'fudingbaicha', name: '福鼎白茶', type: '白茶', origin: '福建 · 福鼎', flavor: ['毫香', '甜润', '陈香'], image: IMGS[0], description: '福鼎产区白茶，毫香甜润，可长期陈放。', brewing: BREW['白茶'], varieties: [{ name: '馥益堂' }, { name: '品品香' }] },
-  { id: 'baiyueguang', name: '白月光', type: '白茶', origin: '云南 · 普洱', flavor: ['蜜香', '甜润', '柔和'], image: IMGS[1], description: '云南月光白，叶面黑、叶背白，甜润带蜜香。', brewing: BREW['白茶'], varieties: [{ name: '月下美人' }] },
-  { id: 'gongmei', name: '贡眉', type: '白茶', origin: '福建 · 福鼎', flavor: ['甜醇', '枣香', '温和'], image: IMGS[2], description: '以菜茶芽叶制成，甜醇温和，带枣香。', brewing: BREW['白茶'], varieties: [] },
-  { id: 'shoumei', name: '寿眉', type: '白茶', origin: '福建 · 福鼎', flavor: ['甜醇', '枣香', '陈香'], image: IMGS[3], description: '粗枝大叶的白茶，甜醇枣香，陈放更佳。', brewing: BREW['白茶'], varieties: [] },
+  { id: 'baihaoyinzhen', name: '白毫银针', type: '白茶', origin: '福建 · 福鼎', flavor: ['毫香', '清甜', '鲜爽'], image: 'Picture/baihaoyinzhen.png', description: '全芽头白茶，满披白毫，毫香清甜。', brewing: BREW['白茶'], varieties: [{ name: '品品香' }, { name: '绿雪芽' }] },
+  { id: 'baimudan', name: '白牡丹', type: '白茶', origin: '福建 · 福鼎', flavor: ['花香', '清甜', '醇和'], image: 'Picture/baimudan.png', description: '一芽二叶，形似牡丹，花香清甜。', brewing: BREW['白茶'], varieties: [{ name: '品品香' }, { name: '绿雪芽' }] },
+  { id: 'baiyueguang', name: '月光白', type: '白茶', origin: '云南 · 普洱', flavor: ['蜜香', '甜润', '柔和'], image: 'Picture/baiyueguang.png', description: '月光白，又称月光美人、月光白茶，是一款产自云南省思茅地区的白茶，以其独特的采制工艺、黑白相间的干茶外形和浓郁的毫香蜜韵而闻名。月光白又名月光美人，也被称为月光白茶、月光茶。其采摘手法独特，须在月光下制作，每批茶叶的粗制要在一天内完成。', brewing: BREW['白茶'], varieties: [{ name: '月下美人' }] },
+  { id: 'gongmei', name: '贡眉', type: '白茶', origin: '福建 · 福鼎', flavor: ['甜醇', '枣香', '温和'], image: 'Picture/gongmei.png', description: '以菜茶芽叶制成，甜醇温和，带枣香。', brewing: BREW['白茶'], varieties: [] },
+  { id: 'shoumei', name: '寿眉', type: '白茶', origin: '福建 · 福鼎', flavor: ['甜醇', '枣香', '陈香'], image: 'Picture/shoumei.png', description: '粗枝大叶的白茶，甜醇枣香，陈放更佳。', brewing: BREW['白茶'], varieties: [] },
 
   // ============ 花茶 ============
   { id: 'molihuacha', name: '茉莉花茶', type: '花茶', origin: '广西 · 横州', flavor: ['茉莉花香', '清甜', '鲜灵'], image: 'Picture/molihuacha.png', description: '绿茶茶坯与茉莉花多次窨制，花香鲜灵持久。', brewing: BREW['花茶'], varieties: [{ name: '九窨茉莉听雪', rating: 3.4, price: 99.5, reviews: [{ user: '我的评价', rating: 3.4, content: '香气充盈、久泡发涩；不适合闷泡，推荐冷泡。' }] }, { name: '榕莉' }, { name: '张一元' }] },
 
   // ============ 乌龙茶 ============
-  { id: 'dongdingwulong', name: '冻顶乌龙', type: '乌龙茶', origin: '台湾 · 南投', flavor: ['焙火香', '奶香', '醇厚'], image: IMGS[5], description: '台湾名茶，焙火香与奶香交融，醇厚回甘。', brewing: BREW['乌龙茶'], varieties: [{ name: '顺记茗茶' }] },
-  { id: 'jinxuanwulong', name: '金萱乌龙', type: '乌龙茶', origin: '台湾 · 阿里山', flavor: ['奶香', '花香', '清甜'], image: IMGS[6], description: '台湾乌龙，独特天然奶香，清甜柔和。', brewing: BREW['乌龙茶'], varieties: [] },
-  { id: 'dongfangmeiren', name: '东方美人', type: '乌龙茶', origin: '台湾 · 新竹', flavor: ['蜜香', '果香', '熟果香'], image: IMGS[7], description: '经小绿叶蝉叮咬，蜜香果香独特，汤色琥珀。', brewing: BREW['乌龙茶'], varieties: [] },
-  { id: 'tieguanyin', name: '铁观音', type: '乌龙茶', origin: '福建 · 安溪', flavor: ['兰花香', '观音韵', '醇厚'], image: IMGS[8], description: '安溪乌龙代表，兰花香与观音韵兼具。', brewing: BREW['乌龙茶'], varieties: [{ name: '中茶海堤' }, { name: '八马' }, { name: '日春' }] },
-  { id: 'wuyiyancha', name: '武夷岩茶', type: '乌龙茶', origin: '福建 · 武夷山', flavor: ['岩韵', '焦糖香', '兰花香'], image: IMGS[9], description: '武夷山岩茶，岩骨花香，韵味悠长。', brewing: BREW['乌龙茶'], varieties: [{ name: '武夷星' }, { name: '幔亭mt209' }] },
+  { id: 'dongdingwulong', name: '冻顶乌龙', type: '乌龙茶', origin: '台湾 · 南投', flavor: ['焙火香', '奶香', '醇厚'], image: 'Picture/dongdingwulong.png', description: '台湾名茶，焙火香与奶香交融，醇厚回甘。', brewing: BREW['乌龙茶'], varieties: [{ name: '顺记茗茶' }] },
+  { id: 'jinxuanwulong', name: '金萱乌龙', type: '乌龙茶', origin: '台湾 · 阿里山', flavor: ['奶香', '花香', '清甜'], image: 'Picture/jinxuanwulong.png', description: '台湾乌龙，独特天然奶香，清甜柔和。', brewing: BREW['乌龙茶'], varieties: [] },
+  { id: 'dongfangmeiren', name: '东方美人', type: '乌龙茶', origin: '台湾 · 新竹', flavor: ['蜜香', '果香', '熟果香'], image: 'Picture/dongfangmeiren.png', description: '经小绿叶蝉叮咬，蜜香果香独特，汤色琥珀。', brewing: BREW['乌龙茶'], varieties: [] },
+  { id: 'tieguanyin', name: '铁观音', type: '乌龙茶', origin: '福建 · 安溪', flavor: ['兰花香', '观音韵', '醇厚'], image: 'Picture/tieguanyin.png', description: '安溪乌龙代表，兰花香与观音韵兼具。', brewing: BREW['乌龙茶'], varieties: [{ name: '中茶海堤' }, { name: '八马' }, { name: '日春' }] },
+  { id: 'wuyiyancha', name: '武夷岩茶', type: '乌龙茶', origin: '福建 · 武夷山', flavor: ['岩韵', '焦糖香', '兰花香'], image: 'Picture/wuyiyancha.png', description: '武夷山岩茶，岩骨花香，韵味悠长。', brewing: BREW['乌龙茶'], varieties: [{ name: '武夷星' }, { name: '幔亭mt209' }] },
   { id: 'zhangpingshuixian', name: '漳平水仙', type: '乌龙茶', origin: '福建 · 漳平', flavor: ['兰花韵', '清雅', '甘醇'], image: 'Picture/zhangpingshuixian.png', description: '唯一紧压成型的乌龙茶，兰花香清雅，甘醇。', brewing: BREW['乌龙茶'], varieties: [{ name: '九鹏' }, { name: '研茶苑', rating: 4.3, price: 13.9, reviews: [{ user: '我的评价', rating: 4.3, content: '汤色金黄透亮，兰花香气馥郁清晰，入口柔且香，回甘明显。' }] }] },
   { id: 'fenghuangdancong', name: '凤凰单枞', type: '乌龙茶', origin: '广东 · 潮州凤凰山', flavor: ['蜜兰香', '花香', '回甘'], image: 'Picture/fenghuangdancong.png', description: '潮州凤凰山乌龙，蜜兰香、鸭屎香等香型丰富。', brewing: BREW['乌龙茶'], varieties: [
     { name: '蜜兰香', brand: '茶米烟火', rating: 4.05, reviews: [{ user: '我的评价', rating: 4.05, content: '色泽红亮，叶片大而整齐，约 7-8 泡之后变淡，香气明显。' }] },
@@ -122,14 +107,14 @@ const TEAS = [
   ] },
 
   // ============ 黑茶 ============
-  { id: 'anhuaheicha', name: '安化黑茶', type: '黑茶', origin: '湖南 · 安化', flavor: ['松烟香', '醇厚', '陈香'], image: IMGS[1], description: '湖南安化黑茶，松烟香陈香，醇厚耐泡。', brewing: BREW['黑茶'], varieties: [{ name: '白沙溪' }, { name: '湘丰' }] },
-  { id: 'fuzhuancha', name: '茯砖茶', type: '黑茶', origin: '陕西 · 泾阳', flavor: ['菌花香', '醇和', '陈香'], image: IMGS[2], description: '含"金花"的黑茶，菌花香，醇和暖胃。', brewing: BREW['黑茶'], varieties: [{ name: '湘益' }, { name: '泾渭茯茶' }] },
-  { id: 'yaanzangcha', name: '雅安藏茶', type: '黑茶', origin: '四川 · 雅安', flavor: ['陈香', '醇厚', '红浓'], image: IMGS[3], description: '四川雅安黑茶，陈香红浓，适合煮饮。', brewing: BREW['黑茶'], varieties: [{ name: '雅安茶厂' }] },
-  { id: 'liubaocha', name: '六堡茶', type: '黑茶', origin: '广西 · 梧州', flavor: ['槟榔香', '陈香', '醇滑'], image: IMGS[4], description: '广西梧州黑茶，槟榔香陈香，醇滑。', brewing: BREW['黑茶'], varieties: [{ name: '三鹤' }, { name: '中茶' }] },
-  { id: 'puercha', name: '普洱茶', type: '黑茶', origin: '云南', flavor: ['陈香', '醇厚', '回甘'], image: IMGS[5], description: '云南大叶种后发酵茶，陈香醇厚，越陈越香。', brewing: BREW['黑茶'], varieties: [{ name: '勐海七子饼' }, { name: '大益' }, { name: '中茶' }, { name: '下关沱茶' }] },
+  { id: 'anhuaheicha', name: '安化黑茶', type: '黑茶', origin: '湖南 · 安化', flavor: ['松烟香', '醇厚', '陈香'], image: 'Picture/anhuaheicha.png', description: '湖南安化黑茶，松烟香陈香，醇厚耐泡。', brewing: BREW['黑茶'], varieties: [{ name: '白沙溪' }, { name: '湘丰' }] },
+  { id: 'fuzhuancha', name: '茯砖茶', type: '黑茶', origin: '陕西 · 泾阳', flavor: ['菌花香', '醇和', '陈香'], image: 'Picture/fuzhuancha.png', description: '含"金花"的黑茶，菌花香，醇和暖胃。', brewing: BREW['黑茶'], varieties: [{ name: '湘益' }, { name: '泾渭茯茶' }] },
+  { id: 'yaanzangcha', name: '雅安藏茶', type: '黑茶', origin: '四川 · 雅安', flavor: ['陈香', '醇厚', '红浓'], image: 'Picture/yaanzangcha.png', description: '四川雅安黑茶，陈香红浓，适合煮饮。', brewing: BREW['黑茶'], varieties: [{ name: '雅安茶厂' }] },
+  { id: 'liubaocha', name: '六堡茶', type: '黑茶', origin: '广西 · 梧州', flavor: ['槟榔香', '陈香', '醇滑'], image: 'Picture/liubaocha.png', description: '广西梧州黑茶，槟榔香陈香，醇滑。', brewing: BREW['黑茶'], varieties: [{ name: '三鹤' }, { name: '中茶' }] },
+  { id: 'puercha', name: '普洱茶', type: '黑茶', origin: '云南', flavor: ['陈香', '醇厚', '回甘'], image: 'Picture/puercha.png', description: '云南大叶种后发酵茶，陈香醇厚，越陈越香。', brewing: BREW['黑茶'], varieties: [{ name: '勐海七子饼' }, { name: '大益' }, { name: '中茶' }, { name: '下关沱茶' }] },
 
   // ============ 黄茶 ============
-  { id: 'junshanyinzhen', name: '君山银针', type: '黄茶', origin: '湖南 · 岳阳洞庭湖', flavor: ['毫香', '甜醇', '黄汤'], image: IMGS[6], description: '黄茶珍品，芽头挺直，冲泡后三起三落。', brewing: BREW['黄茶'], varieties: [{ name: '君山茶叶' }] },
-  { id: 'mengdinghuangya', name: '蒙顶黄芽', type: '黄茶', origin: '四川 · 雅安蒙顶山', flavor: ['嫩香', '甜醇', '黄汤'], image: IMGS[7], description: '蒙顶山黄茶，嫩香甜醇，黄汤黄叶。', brewing: BREW['黄茶'], varieties: [{ name: '跃华茶' }, { name: '蒙顶山' }] },
-  { id: 'huoshanhuangya', name: '霍山黄芽', type: '黄茶', origin: '安徽 · 霍山', flavor: ['嫩香', '甜醇', '鲜爽'], image: IMGS[8], description: '安徽黄茶，嫩香鲜爽，甜醇回甘。', brewing: BREW['黄茶'], varieties: [{ name: '抱儿钟秀' }] }
+  { id: 'junshanyinzhen', name: '君山银针', type: '黄茶', origin: '湖南 · 岳阳洞庭湖', flavor: ['毫香', '甜醇', '黄汤'], image: 'Picture/junshanyinzhen.png', description: '黄茶珍品，芽头挺直，冲泡后三起三落。', brewing: BREW['黄茶'], varieties: [{ name: '君山茶叶' }] },
+  { id: 'mengdinghuangya', name: '蒙顶黄芽', type: '黄茶', origin: '四川 · 雅安蒙顶山', flavor: ['嫩香', '甜醇', '黄汤'], image: 'Picture/mengdinghuangya.png', description: '蒙顶山黄茶，嫩香甜醇，黄汤黄叶。', brewing: BREW['黄茶'], varieties: [{ name: '跃华茶' }, { name: '蒙顶山' }] },
+  { id: 'huoshanhuangya', name: '霍山黄芽', type: '黄茶', origin: '安徽 · 霍山', flavor: ['嫩香', '甜醇', '鲜爽'], image: 'Picture/huoshanhuangya.png', description: '安徽黄茶，嫩香鲜爽，甜醇回甘。', brewing: BREW['黄茶'], varieties: [{ name: '抱儿钟秀' }] }
 ];

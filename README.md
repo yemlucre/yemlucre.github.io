@@ -35,7 +35,7 @@
 | `type` | 茶类（绿茶/红茶/乌龙茶/白茶/黑茶/黄茶/花茶） |
 | `origin` | 产地 |
 | `flavor` | 风味标签数组 |
-| `image` | 图片链接 |
+| `image` | 图片路径（本地图片存放于 `Picture/` 目录） |
 | `description` | 简介 |
 | `brewing` | 通用冲泡手法（水温、器具、茶水比、时间、步骤） |
 | `varieties` | 品种品牌列表，每项含 `name`（品种名）、`brand`（品牌名，可选）、`rating`（评分 0-5，支持小数，按百分比染色显示）、`price`（价格，元/50g，可选）、`reviews`（该品种的评价数组，含 `user`、`rating`、`content`） |
@@ -71,7 +71,7 @@ git remote add origin https://github.com/<你的用户名>/<仓库名>.git
 git push -u origin main
 ```
 
-> 提示：示例数据中的茶叶图片来自外链，如需稳定可下载到本地 `images/` 目录并修改 `data.js` 里的 `image` 路径。
+> 提示：茶叶图片存放在 `Picture/` 目录中，文件名使用拼音，便于在不同操作系统和部署环境中稳定加载。
 
 ## 免责声明
 
