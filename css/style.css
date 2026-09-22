@@ -293,10 +293,6 @@ img { display: block; max-width: 100%; }
 .variety-rate-summary { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 13px; }
 .variety-rate .review-form { margin-top: 12px; }
 
-/* ---------- 十分制星级（10 颗星） ---------- */
-.stars-10 { font-size: 13px; letter-spacing: 1px; }
-.stars-10.lg { font-size: 16px; letter-spacing: 2px; }
-
 /* ---------- 页头用户登录区 ---------- */
 .auth-area { margin-left: auto; display: flex; align-items: center; gap: 10px; }
 .user-chip { display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px 5px 6px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; font-size: 14px; font-weight: 600; max-width: 200px; cursor: pointer; font-family: inherit; transition: .2s; }
@@ -364,9 +360,8 @@ img { display: block; max-width: 100%; }
 .user-review-list .review-head { flex-wrap: wrap; gap: 4px 10px; }
 .r-num { font-weight: 700; color: var(--ink-soft); }
 
-/* 十分制星级选择器 */
-.star-picker.ten { flex-wrap: wrap; row-gap: 4px; margin-bottom: 10px; }
-.star-picker.ten button { font-size: 20px; padding: 0 1px; }
+/* 五分制星级选择器（评分表单内与评价输入框保持间距） */
+.review-form .star-picker { margin-bottom: 10px; }
 .picker-hint { font-size: 13px; color: var(--ink-mute); font-weight: 600; }
 
 /* ---------- 提示 ---------- */

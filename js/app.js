@@ -10,7 +10,7 @@ const state = {
   search: '',
   activeTea: null,   // 当前打开详情弹窗的茶叶 id
   authTab: 'login',  // 登录/注册弹窗当前标签
-  rateValues: {}     // 详情弹窗中各品牌当前选中的星级（1-10），键为品牌标识
+  rateValues: {}     // 详情弹窗中各品牌当前选中的星级（1-5），键为品牌标识
 };
 
 // 茶类分组（用于筛选 chips 与冲泡指南）
@@ -42,16 +42,6 @@ function escapeHtml(str) {
 
 function fmtRating(n) {
   return String(Math.round(n * 100) / 100);
-}
-
-// 十分制评分星：共 10 颗，小数部分按百分比染色
-function percentStars10(rating, large) {
-  const pct = Math.max(0, Math.min(100, (Number(rating) || 0) / 10 * 100));
-  const stars = '★★★★★★★★★★';
-  return `<span class="stars-percent stars-10${large ? ' lg' : ''}" style="--pct:${pct}%">
-    <span class="stars-base">${stars}</span>
-    <span class="stars-fill">${stars}</span>
-  </span>`;
 }
 
 function fmtDate(iso) {
@@ -352,19 +342,19 @@ function onUserDataChange() {
   }
 }
 
-// 卡片上的茶友平均分（十分制）
+// 卡片上的茶友平均分（五分制）
 function cardRatingHtml(tea) {
   const s = UserStore.teaStats(tea.id);
   if (!s.count) return '';
   return `<div class="tea-rating"><span class="star">★</span><span class="num">${s.avg.toFixed(1)} 分 · ${s.count} 人评</span></div>`;
 }
 
-// 详情弹窗「品种与品牌」区块：茶友评分与评价按品牌独立展示（十分制）
+// 详情弹窗「品种与品牌」区块：茶友评分与评价按品牌独立展示（五分制）
 function varietiesSectionHtml(tea, varieties) {
   const user = UserStore.currentUser();
   const loginTip = user ? '' : `
       <div class="rate-login-tip">
-        <span>登录后可在下方每个品牌后打分（1 - 10 星）并撰写评价，评分按品牌独立计算平均分。</span>
+        <span>登录后可在下方每个品牌后打分（1 - 5 星）并撰写评价，评分按品牌独立计算平均分。</span>
         <button type="button" class="btn btn-primary btn-sm" id="rateLoginBtn">登录 / 注册</button>
       </div>`;
 
@@ -387,11 +377,11 @@ function varietiesSectionHtml(tea, varieties) {
         <p class="review-content">${escapeHtml(r.content)}</p>
       </div>`).join('');
 
-    // 该品牌的茶友平均分（十分制）
+    // 该品牌的茶友平均分（五分制）
     const summary = stats.count
       ? `<div class="variety-rate-summary">
-          ${percentStars10(stats.avg)}
-          <span class="r-num">${stats.avg.toFixed(1)} / 10</span>
+          ${percentStars(stats.avg)}
+          <span class="r-num">${stats.avg.toFixed(1)} / 5</span>
           <span class="rate-count">${stats.count} 位茶友评分</span>
         </div>`
       : '<span class="rate-none">暂无茶友评分，登录后来做第一个打分的人吧。</span>';
@@ -403,7 +393,7 @@ function varietiesSectionHtml(tea, varieties) {
           <div class="review-item">
             <div class="review-head">
               <span class="review-user">${escapeHtml(r.user)}</span>
-              <span class="review-meta">${percentStars10(r.rating)}<span class="r-num">${r.rating} / 10</span>${r.updatedAt ? `<span>${fmtDate(r.updatedAt)}</span>` : ''}</span>
+              <span class="review-meta">${percentStars(r.rating)}<span class="r-num">${r.rating} / 5</span>${r.updatedAt ? `<span>${fmtDate(r.updatedAt)}</span>` : ''}</span>
             </div>
             ${r.review ? `<p class="review-content">${escapeHtml(r.review)}</p>` : ''}
           </div>`).join('')}
@@ -412,10 +402,10 @@ function varietiesSectionHtml(tea, varieties) {
     // 我的评分表单（同一品牌保留一条，可随时更新/删除）
     const form = user ? `
       <div class="review-form" data-vkey="${escapeHtml(vk)}">
-        <h4>我的评分与评价（十分制，可随时更新）</h4>
-        <div class="star-picker ten" data-vkey="${escapeHtml(vk)}">
-          ${Array.from({ length: 10 }, (_, i) => `<button type="button" data-value="${i + 1}" aria-label="${i + 1} 分"${state.rateValues[vk] >= i + 1 ? ' class="on"' : ''}>★</button>`).join('')}
-          <span class="picker-hint">${state.rateValues[vk] ? `${state.rateValues[vk]} / 10 分` : '点击星星评分'}</span>
+        <h4>我的评分与评价（五分制，可随时更新）</h4>
+        <div class="star-picker" data-vkey="${escapeHtml(vk)}">
+          ${Array.from({ length: 5 }, (_, i) => `<button type="button" data-value="${i + 1}" aria-label="${i + 1} 分"${state.rateValues[vk] >= i + 1 ? ' class="on"' : ''}>★</button>`).join('')}
+          <span class="picker-hint">${state.rateValues[vk] ? `${state.rateValues[vk]} / 5 分` : '点击星星评分'}</span>
         </div>
         <div class="form-row">
           <textarea maxlength="500" placeholder="这个品牌喝起来怎么样？写下你的感受（可不填）…">${my ? escapeHtml(my.review || '') : ''}</textarea>
@@ -464,7 +454,7 @@ function setPickerStars(picker, upto) {
     btn.classList.toggle('on', Number(btn.dataset.value) <= upto);
   });
   const hint = picker.querySelector('.picker-hint');
-  if (hint) hint.textContent = upto ? `${upto} / 10 分` : '点击星星评分';
+  if (hint) hint.textContent = upto ? `${upto} / 5 分` : '点击星星评分';
 }
 
 // 在弹窗中按品牌标识找到对应的评价表单
@@ -476,7 +466,7 @@ function modalReviewForm(vkey) {
 async function submitMyReview(vkey) {
   if (!state.activeTea || !UserStore.currentUser() || !vkey) return;
   const rating = state.rateValues[vkey] || 0;
-  if (!rating) { showToast('请先点击星星选择 1 - 10 分'); return; }
+  if (!rating) { showToast('请先点击星星选择 1 - 5 分'); return; }
   const form = modalReviewForm(vkey);
   const box = form ? form.querySelector('textarea') : null;
   const btn = form ? form.querySelector('.review-submit') : null;

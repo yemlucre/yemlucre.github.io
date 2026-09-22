@@ -278,7 +278,7 @@ const UserStore = {
       .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
   },
 
-  // 品牌总评分 = 该品牌所有用户评分的平均分（十分制）
+  // 品牌总评分 = 该品牌所有用户评分的平均分（五分制）
   varietyStats(teaId, variety) {
     const rs = this.varietyReviews(teaId, variety);
     if (!rs.length) return { avg: 0, count: 0 };
@@ -292,7 +292,7 @@ const UserStore = {
     return Object.keys(m).reduce((rs, vk) => rs.concat(this.varietyReviews(teaId, vk)), []);
   },
 
-  // 整茶总评分 = 该茶所有品牌评分的平均分（十分制，卡片展示用）
+  // 整茶总评分 = 该茶所有品牌评分的平均分（五分制，卡片展示用）
   teaStats(teaId) {
     const rs = this.teaReviews(teaId);
     if (!rs.length) return { avg: 0, count: 0 };
@@ -308,7 +308,7 @@ const UserStore = {
   async saveReview(teaId, variety, rating, review) {
     if (!this._user) throw new Error('请先登录');
     rating = Math.round(Number(rating));
-    if (!(rating >= 1 && rating <= 10)) throw new Error('评分需在 1 - 10 分之间');
+    if (!(rating >= 1 && rating <= 5)) throw new Error('评分需在 1 - 5 分之间');
     variety = String(variety || '').trim();
     if (!variety) throw new Error('缺少品牌信息，无法保存评分');
     const body = {
