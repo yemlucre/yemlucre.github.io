@@ -307,8 +307,8 @@ const UserStore = {
 
   async saveReview(teaId, variety, rating, review) {
     if (!this._user) throw new Error('请先登录');
-    rating = Math.round(Number(rating));
-    if (!(rating >= 1 && rating <= 5)) throw new Error('评分需在 1 - 5 分之间');
+    rating = Math.round(Number(rating) * 2) / 2; // 归整到 0.5 的倍数（支持半星）
+    if (!(rating >= 0.5 && rating <= 5)) throw new Error('评分需在 0.5 - 5 分之间');
     variety = String(variety || '').trim();
     if (!variety) throw new Error('缺少品牌信息，无法保存评分');
     const body = {

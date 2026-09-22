@@ -38,7 +38,7 @@ create table if not exists public.reviews (
   variety    text not null,
   user_id    uuid not null references public.profiles(id) on delete cascade,
   user_name  text not null,
-  rating     int  not null check (rating between 1 and 5),
+  rating     numeric(2,1) not null check (rating between 0.5 and 5),
   review     text not null default '',
   updated_at timestamptz not null default now(),
   primary key (tea_id, variety, user_id)
@@ -50,13 +50,15 @@ alter table public.reviews add column if not exists variety text not null defaul
 alter table public.reviews drop constraint if exists reviews_pkey;
 alter table public.reviews add constraint reviews_pkey primary key (tea_id, variety, user_id);
 
--- 旧库迁移：十分制 → 五分制。先把旧的 6-10 分按 round(rating / 2) 折算为
--- 1-5 分（已是 1-5 分的行保持不变），再把取值约束收紧为 1-5（可重复执行）。
+-- 旧库迁移：十分制 → 五分制（支持半星）。先把旧的 6-10 分按 round(rating / 2)
+-- 折算为 1-5 分（已是 1-5 分的行保持不变），再把 rating 改为 numeric(2,1)、
+-- 取值范围放宽到 0.5 - 5（可重复执行）。
 update public.reviews set rating = (greatest(1, round(rating / 2.0)))::int where rating > 5;
+alter table public.reviews alter column rating type numeric(2,1);
 alter table public.reviews drop constraint if exists reviews_rating_check;
 do $$
 begin
-  alter table public.reviews add constraint reviews_rating_check check (rating between 1 and 5);
+  alter table public.reviews add constraint reviews_rating_check check (rating between 0.5 and 5);
 exception when duplicate_object then null;
 end $$;
 

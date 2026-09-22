@@ -10,7 +10,7 @@ const state = {
   search: '',
   activeTea: null,   // 当前打开详情弹窗的茶叶 id
   authTab: 'login',  // 登录/注册弹窗当前标签
-  rateValues: {}     // 详情弹窗中各品牌当前选中的星级（1-5），键为品牌标识
+  rateValues: {}     // 详情弹窗中各品牌当前选中的星级（0.5-5，支持半星），键为品牌标识
 };
 
 // 茶类分组（用于筛选 chips 与冲泡指南）
@@ -402,9 +402,13 @@ function varietiesSectionHtml(tea, varieties) {
     // 我的评分表单（同一品牌保留一条，可随时更新/删除）
     const form = user ? `
       <div class="review-form" data-vkey="${escapeHtml(vk)}">
-        <h4>我的评分与评价（五分制，可随时更新）</h4>
+        <h4>我的评分与评价（五分制，支持半星，可随时更新）</h4>
         <div class="star-picker" data-vkey="${escapeHtml(vk)}">
-          ${Array.from({ length: 5 }, (_, i) => `<button type="button" data-value="${i + 1}" aria-label="${i + 1} 分"${state.rateValues[vk] >= i + 1 ? ' class="on"' : ''}>★</button>`).join('')}
+          ${Array.from({ length: 5 }, (_, i) => {
+            const v = i + 1;
+            const cls = state.rateValues[vk] >= v ? ' on' : (state.rateValues[vk] >= v - 0.5 ? ' half' : '');
+            return `<span class="star-slot${cls}" data-slot="${v}"><button type="button" data-value="${v - 0.5}" aria-label="${v - 0.5} 分"></button><button type="button" data-value="${v}" aria-label="${v} 分"></button></span>`;
+          }).join('')}
           <span class="picker-hint">${state.rateValues[vk] ? `${state.rateValues[vk]} / 5 分` : '点击星星评分'}</span>
         </div>
         <div class="form-row">
@@ -449,9 +453,12 @@ function varietiesSectionHtml(tea, varieties) {
     </div>`;
 }
 
+// 设置选择器高亮：upto 为 0.5 的整数倍，满星/半星/空星按区间落位
 function setPickerStars(picker, upto) {
-  picker.querySelectorAll('button').forEach(btn => {
-    btn.classList.toggle('on', Number(btn.dataset.value) <= upto);
+  picker.querySelectorAll('.star-slot').forEach(slot => {
+    const v = Number(slot.dataset.slot);
+    slot.classList.toggle('on', upto >= v);
+    slot.classList.toggle('half', upto < v && upto >= v - 0.5);
   });
   const hint = picker.querySelector('.picker-hint');
   if (hint) hint.textContent = upto ? `${upto} / 5 分` : '点击星星评分';
@@ -466,7 +473,7 @@ function modalReviewForm(vkey) {
 async function submitMyReview(vkey) {
   if (!state.activeTea || !UserStore.currentUser() || !vkey) return;
   const rating = state.rateValues[vkey] || 0;
-  if (!rating) { showToast('请先点击星星选择 1 - 5 分'); return; }
+  if (!rating) { showToast('请先点击星星选择 0.5 - 5 分'); return; }
   const form = modalReviewForm(vkey);
   const box = form ? form.querySelector('textarea') : null;
   const btn = form ? form.querySelector('.review-submit') : null;

@@ -259,8 +259,13 @@ img { display: block; max-width: 100%; }
 .form-row input { flex: 1; min-width: 140px; padding: 9px 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); font-size: 14px; outline: none; font-family: inherit; }
 .form-row input:focus { border-color: var(--accent); }
 .star-picker { display: flex; align-items: center; gap: 4px; }
-.star-picker button { background: none; border: none; font-size: 22px; color: #d8dcd8; cursor: pointer; transition: .15s; }
-.star-picker button.on { color: var(--gold); }
+.star-picker .star-slot { position: relative; width: 24px; height: 24px; font-size: 22px; line-height: 1; color: #d8dcd8; cursor: pointer; transition: color .15s; }
+.star-picker .star-slot::before { content: "★"; position: absolute; inset: 0; }
+.star-picker .star-slot.on::before { color: var(--gold); }
+.star-picker .star-slot.half::before { background: linear-gradient(90deg, var(--gold) 50%, #d8dcd8 50%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.star-picker .star-slot button { position: absolute; top: 0; width: 50%; height: 100%; background: none; border: none; padding: 0; cursor: pointer; }
+.star-picker .star-slot button:first-of-type { left: 0; }
+.star-picker .star-slot button:last-of-type { left: 50%; }
 .form-row textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); font-size: 14px; outline: none; resize: vertical; min-height: 70px; font-family: inherit; }
 .form-row textarea:focus { border-color: var(--accent); }
 .form-submit { display: flex; justify-content: flex-end; margin-top: 4px; }
