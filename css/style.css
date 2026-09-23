@@ -82,8 +82,8 @@ img { display: block; max-width: 100%; }
 .btn-ghost { border: 1px solid var(--line); color: var(--ink); background: var(--card); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent-deep); }
 .hero-stats { margin-top: 44px; display: flex; gap: 40px; }
-.stat strong { display: block; font-size: 28px; font-weight: 800; color: var(--ink); }
-.stat span { font-size: 13px; color: var(--ink-mute); }
+.stat strong { display: block; font-size: 28px; font-weight: 800; color: var(--ink); text-shadow: 0 1px 14px rgba(255,255,255,0.95), 0 0 4px rgba(255,255,255,0.8); }
+.stat span { font-size: 13px; font-weight: 600; letter-spacing: 1px; color: var(--ink-soft); text-shadow: 0 1px 10px rgba(255,255,255,0.95), 0 0 4px rgba(255,255,255,0.8); }
 
 /* Hero 装饰：茶杯与茶叶 */
 .hero-art { position: relative; height: 340px; }
